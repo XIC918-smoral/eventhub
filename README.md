@@ -72,17 +72,31 @@ Inputs
 ------
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| name | Specifies the name of the EventHub resource | `string` |  | Yes |
+| eventhub_name | Specifies the name of the EventHub resource | `string` |  | Yes |
 | namespace_name | Specifies the name of the EventHub Namespace | `string` |  | Yes |
 | resource_group_name | The name of the resource group in which the EventHub's parent Namespace exists | `string` |  | Yes |
 | partition_count | Specifies the current number of shards on the Event Hub | `number` |  | Yes |
 | message_retention | Specifies the number of days to retain the events for this Event Hub. | `number` |  | Yes |
-| capture_description | A capture_description block | `string` |  | No |
-| status | Specifies the status of the Event Hub resource | `string` | Active | No |
-| interval_in_seconds  | Specifies the time interval in seconds at which the capture will happen. Values can be between 60 and 900 seconds | `number` |  300 | No |
-| size_limit_in_bytes | Specifies the amount of data built up in your EventHub before a Capture Operation occurs. Value should be between 10485760 and 524288000 bytes | `number` | 314572800 | No |
-| skip_empty_archives | Specifies if empty files should not be emitted if no events occur during the Capture time window | `bool` | false | No |
+| sku | Defines which tier to use. Valid options are Basic, Standard, and Premium. Please not that setting this field to Premium will force the creation of a new resource and also requires setting zone_redundant to true | `string` |  | yes |
+| capacity | Specifies the Capacity / Throughput Units for a Standard SKU namespace. Default capacity has a maximum of 2, but can be increased in blocks of 2 on a committed purchase basis | `number` | 2 | No |
+| auto_inflate_enabled  | Is Auto Inflate enabled for the EventHub Namespace? | `bool` |  false | No |
+| dedicated_cluster_id | Specifies the ID of the EventHub Dedicated Cluster where this Namespace should created | `string` | null | No |
+| maximum_throughput_units |  Specifies the maximum number of throughput units when Auto Inflate is Enabled. Valid values range from 1 - 20 | `number` | null | No |
 | vnet_name | The name of the virtual network | `string` |  | Yes |
-| subnet_name | The name of the virtual network | `string` |  | Yes |
-| name | Specifies the name of the EventHub resource | `string` |  | Yes |
-| name | Specifies the name of the EventHub resource | `string` |  | Yes |
+| subnet_name | The variable for subnet name | `string` |  | Yes |
+| enable_private_endpoint | Specifies the name of the EventHub resource | `string` |  | Yes |
+| zone_redundant | Specifies if the EventHub Namespace should be Zone Redundant (created across Availability Zones) | `bool` | false | No |
+| partition_count | Specifies the current number of shards on the Event Hub | `number` |  | Yes |
+| message_retention | Specifies the number of days to retain the events for this Event Hub. | `number` |  | Yes |
+| status | Specifies the status of the Event Hub resource. Possible values are Active, Disabled and SendDisabled. Defaults to Active | `string` | Active | No |
+| tag_map | Map of Tags those we want to Add | `map(string)` |  | Yes |
+| authorization_rule_name | Specifies the name of the EventHub Authorization Rule resource | `string` |  | Yes |
+| listen | Does this Authorization Rule have permissions to Listen to the Event Hub? | `bool` | false | No |
+| send | Does this Authorization Rule have permissions to Send to the Event Hub? | `bool` | false | No |
+| manage | Does this Authorization Rule have permissions to Manage to the Event Hub? When this property is true - both listen and send must be too | `bool` | false | No |
+| namespace_authorization_rule_name | Specifies the name of the Authorization Rule | `string` |  | yes |
+| listen_namespace_authorization_rule | Does this Authorization Rule have permissions to Listen to the Event Hub? | `bool` | false | No |
+| send_namespace_authorization_rule | Does this Authorization Rule have permissions to Send to the Event Hub?" | `bool` | false | No |
+| manage_namespace_authorization_rule | Does this Authorization Rule have permissions to Manage to the Event Hub? When this property is true - both listen and send must be too | `bool` | false | No |
+| consumer_group_name | Specifies the name of the EventHub Consumer Group resource | `string` |  | yes |
+| user_metadata | Specifies the user metadata. | `string` | null | No |
