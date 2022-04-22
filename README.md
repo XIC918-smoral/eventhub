@@ -100,3 +100,20 @@ Inputs
 | manage_namespace_authorization_rule | Does this Authorization Rule have permissions to Manage to the Event Hub? When this property is true - both listen and send must be too | `bool` | false | No |
 | consumer_group_name | Specifies the name of the EventHub Consumer Group resource | `string` |  | yes |
 | user_metadata | Specifies the user metadata. | `string` | null | No |
+
+
+
+Output
+------
+| Name | Description |
+|------|-------------|
+| Namespace_id | The EventHub Namespace ID |
+| identity | An identity block as documented below |
+| default_primary_connection_string | The primary connection string for the authorization rule RootManageSharedAccessKey |
+| default_primary_key | The primary access key for the authorization rule RootManageSharedAccessKey |
+| default_secondary_connection_string | The secondary connection string for the authorization rule RootManageSharedAccessKey |
+| default_secondary_key | The secondary access key for the authorization rule RootManageSharedAccessKey. |
+| id | The ID of the EventHub |
+| partition_ids | The identifiers for partitions created for Event Hubs |
+| consumer_group_id | The ID of the EventHub Consumer Group |
+| namespace_authorization_rule_id | The EventHub Namespace Authorization Rule ID |
